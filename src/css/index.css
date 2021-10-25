@@ -1,0 +1,7 @@
+h1{
+    box-shadow: inset 5px 5px 28px rgb(245, 4, 85);
+}
+
+#img{
+    background-image: url("../images/base64.png");
+}
