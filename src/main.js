@@ -8,13 +8,12 @@ import Vue from "vue";
 // 导入App根组件
 import App from "./App.vue";
 
+// 导入路由
+import router from "@/router/router.js"
+
 // 创建app根组件
 new Vue({
-    data:{
-        title:"hello"
-    },
-    render(h){
-        // App组件替换#app的内容
-        return h(App)
-    }
+    router,
+    // App组件替换#app的内容
+    render:(h) => h(App)
 }).$mount('#app')
