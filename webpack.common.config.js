@@ -1,8 +1,9 @@
 const path = require('path');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 console.log('common')
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+const VueLoaderPlugin = require("vue-loader/lib/plugin.js");
 module.exports = {
     entry: "./src/main.js", // 入口
     output: { // 打包后构建目录
@@ -18,28 +19,23 @@ module.exports = {
                 use: ['style-loader', {
                     loader: MiniCssExtractPlugin.loader,
                     options: {
-                        esModule: false
+                        esModule: false   
                     }
-                }, 'css-loader'],
+                }, 'css-loader','postcss-loader'],
 
             },
             {
                 test: /\.less$/,
                 use: ['style-loader', {
-                    loader: MiniCssExtractPlugin.loader,
+                    loader: MiniCssExtractPlugin.loader,  
                     options: {
-                        esModule: false
+                        esModule: false   // 关闭es6模块化导出
                     }
-                }, 'css-loader', 'less-loader'],
+                }, 'css-loader','postcss-loader','less-loader'],
             },
             {
                 test: /\.scss$/,
-                use: ['style-loader', {
-                    loader: MiniCssExtractPlugin.loader,
-                    options: {
-                        esModule: false
-                    }
-                }, 'css-loader', 'less-loader','sass-loader'],
+                use: ['style-loader','css-loader','postcss-loader','sass-loader'],
             },
             {
                 test: /\.(png|jpeg|jpg|gif)$/,
@@ -71,6 +67,10 @@ module.exports = {
                         presets: ['@babel/preset-env']
                     }
                 }
+            },
+            {
+                test: /\.vue$/,
+                use: 'vue-loader'
             }
         ],
     },
@@ -84,6 +84,16 @@ module.exports = {
         new MiniCssExtractPlugin({
             // 每次打包重命名资源，可以防止客户端缓存
             filename: "[name]-[hash:8].css",
-        })
-    ]
+        }),
+        new VueLoaderPlugin()
+    ],
+    resolve:{
+        alias:{
+            // 修正vue导的入路径，导入完整的Vue框架
+            'vue$':"vue/dist/vue.js",
+            //  配置路径别名@，方便导入
+            // @代表src目录
+            '@': path.join(__dirname, 'src'),
+        }
+    }
 }
