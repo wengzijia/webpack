@@ -14,9 +14,6 @@
                 date:new Date(),
                 time:parseInt(Date.now()/1000)
             }
-        },
-        created:{
-            
         }
     }
 </script>
