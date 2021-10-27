@@ -94,6 +94,12 @@ module.exports = {
             //  配置路径别名@，方便导入
             // @代表src目录
             '@': path.join(__dirname, 'src'),
-        }
+            // @api代表api目录
+            '@api': path.join(__dirname, 'src/api'),
+            //  @util代表util目录
+            '@util': path.join(__dirname, 'src/util'),
+        },
+        // 可以省略js、json、vue 的后缀,按顺序匹配
+        extensions: ['.js', '.json', '.vue'],
     }
 }

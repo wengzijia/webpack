@@ -11,6 +11,9 @@ import App from "./App.vue";
 // 导入路由
 import router from "@/router/router.js"
 
+// 导入过滤器
+import "@/filter/index"
+
 // 创建app根组件
 new Vue({
     router,
