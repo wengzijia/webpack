@@ -5,7 +5,9 @@
         <router-link to="/register">注册</router-link>
         <router-link to="/yule">娱乐</router-link>
         <router-link to="/user">用户</router-link>
-
+        <router-link to="/test">测试</router-link>
+        <router-link to="/fu">父亲</router-link>
+        
         <keep-alive>
              <!-- 路由匹配的内容显示在这个容器 -->
             <router-view></router-view>
@@ -14,7 +16,6 @@
 </template>
 
 <script>
-
     export default {
        name:"App"
     }

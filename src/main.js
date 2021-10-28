@@ -22,8 +22,11 @@ import { reqGet,reqPost } from "./util/tool";
 // 导入axios
 import axios from "@/api/index"
 
-// 创建mixin
-Vue.mixin({
+// mixin作用：用于抽离组件中公共的属性和方法，提高代码复用性。
+
+// 每个组件都会触发mixin,先触发全局的created，在触发组件里面的created
+// 创建mixin  data 必须是一个函数 返回一个对象
+Vue.mixin({   // 这里是全局的mixin,会影响全部组件
     data() {
         return {
             msg: "from mixin msg"
@@ -32,6 +35,7 @@ Vue.mixin({
     created: function () {
         console.log("mixin-created")
     },
+    // 这里的方法已经注入到mixin内部了,组件里面的方法(methods)会覆盖这里的方法(methods)
     methods: {
         hello() {
             console.log('我是来自于mixin')

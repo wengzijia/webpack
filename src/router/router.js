@@ -17,7 +17,9 @@ import Yule from "@/components/Yule.vue"
 import User from "@/components/User.vue"
 import Service from "@/components/Service.vue"
 import Indent from "@/components/Indent.vue"
-
+import test from "@/components/test.vue"
+import fu from "@/components/parent.vue"
+import child from "@/components/child.vue"
 Vue.use(VueRouter); // 必须安装到Vue框架中
 
 let router = new VueRouter({
@@ -30,13 +32,19 @@ let router = new VueRouter({
         },
         {path:'/register',component:Register},
         {path:'/yule',component:Yule},
+        {path:'/test',component:test},
+        {path:'/fu',component:fu,
+            children:[
+                {path:"zi",component:child},
+            ]
+        },
         {
             path:'/user',
             component:User,
             children:[
                 {path:"service",component:Service},
                 {path:"indent",component:Indent},
-                {path:"",component:Service},
+                {path:"",component:child},
             ]
         }
     ]

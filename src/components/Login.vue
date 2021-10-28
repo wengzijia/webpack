@@ -13,7 +13,7 @@
 
 
 <script>
-    // 导入mixin
+    // 导入封装的私有mixin
     import commonMixin from "@/mixin/index"
     export default {
         data(){
@@ -22,16 +22,24 @@
             }
         },
         created(){
-            this.test();
+            console.log('login-created');
+            this.hello(); //全局   这里是调用mixin内部的方法
+            this.test(); // 私有  
         },
-        // 导入私有mixin
-        mixins:[commonMixin]
+        //  同名方法,组件的方法会覆盖全局的mixin里面的方法
+        methods: {
+            hello(){
+                console.log('我是来自于Login.vue',this.msg);
+            }
+        },
+        // 导入私有mixin   只会影响当前组件
+        mixins:[commonMixin] 
     }
 </script>
 
 <style lang="scss" scoped>
     // scoped:当前样式只能在当前组件生效(私有)
-    // lang: 指定css预处理器
+    // lang: 指定css预处理器,也就是css语言
     $width:200px;
     $height:100px;
     $color:purple;

@@ -1,4 +1,4 @@
-// 封装mixin
+// 封装私有的mixin
 export default {
     methods:{
         test(){
